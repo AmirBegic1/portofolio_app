@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'package:portofolio/components.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LandingPageWeb extends StatefulWidget {
   LandingPageWeb({Key? key}) : super(key: key);
@@ -10,12 +12,62 @@ class LandingPageWeb extends StatefulWidget {
 }
 
 class _LandingPageWebState extends State<LandingPageWeb> {
+  urlLuncher(String imgPath, String url) {
+    return IconButton(
+      onPressed: () async {
+        await launchUrl(Uri.parse(url));
+      },
+      icon: SvgPicture.asset(
+        imgPath,
+        color: Colors.black,
+        width: 35.0,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var heightDevice = MediaQuery.of(context).size.height;
     var widthDevice = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: Drawer(),
+      drawer: Drawer(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: 72.0,
+              backgroundColor: Colors.red,
+              child: CircleAvatar(
+                radius: 70.0,
+                backgroundColor: Colors.white,
+                backgroundImage: AssetImage("assets/amir.jpeg"),
+              ),
+            ),
+            SizedBox(
+              height: 15.0,
+            ),
+            SansBold("Amir Begić", 30.0),
+            SizedBox(
+              height: 15.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                urlLuncher(
+                  "assets/instagram.svg",
+                  "https://www.instagram.com/amir.begic_/",
+                ),
+                urlLuncher(
+                    "assets/github.svg", "https://github.com/AmirBegic1"),
+                //   urlLuncher(
+                //     "assets/linkedin2.svg",
+                //     "https://www.linkedin.com/in/amir-begi%C4%871/",
+                //   ),
+              ],
+            ),
+          ],
+        ),
+      ),
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
