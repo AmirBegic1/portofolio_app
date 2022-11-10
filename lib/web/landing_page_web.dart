@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:portofolio/components.dart';
 
@@ -40,6 +41,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
       ),
       body: ListView(
         children: [
+          //prvi dio
           Container(
             height: heightDevice - 56,
             child: Row(
@@ -121,7 +123,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
               ],
             ),
           ),
-          //Second Page
+          //drugi dio
           Container(
             height: heightDevice / 1.5,
             child: Row(
@@ -232,6 +234,148 @@ class _LandingPageWebState extends State<LandingPageWeb> {
               ],
             ),
           ),
+          //treci dio
+          Container(
+            height: heightDevice / 1.3,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SansBold("What I do?", 40),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Card(
+                      elevation: 30,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      shadowColor: Colors.red,
+                      child: Padding(
+                        padding: EdgeInsets.all(15.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              "assets/webL.png",
+                              height: 200,
+                              width: 200,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            SansBold("Web development", 15),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Card(
+                      elevation: 30,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      shadowColor: Colors.red,
+                      child: Padding(
+                        padding: EdgeInsets.all(15.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              "assets/app.png",
+                              height: 200,
+                              width: 200,
+                              fit: BoxFit.contain,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            SansBold("App development", 15),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Card(
+                      elevation: 30,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      shadowColor: Colors.red,
+                      child: Padding(
+                        padding: EdgeInsets.all(15.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              "assets/firebase.png",
+                              height: 200,
+                              width: 200,
+                              fit: BoxFit.contain,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            SansBold("Back-end development", 15),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+
+          //cetvrti dio
+          Container(
+            height: heightDevice,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SansBold("Contact me", 40),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Sans("Fist name", 16),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            SizedBox(
+                              width: 350,
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Colors.red,
+                                    ),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Colors.red,
+                                      width: 2,
+                                    ),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(15)),
+                                  ),
+                                  hintText: "Please enter your first name",
+                                  hintStyle: GoogleFonts.poppins(fontSize: 14),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
