@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
 class TabsWeb extends StatefulWidget {
@@ -84,6 +85,145 @@ class Sans extends StatelessWidget {
       text,
       style: GoogleFonts.openSans(
         fontSize: size,
+      ),
+    );
+  }
+}
+
+class TextForm extends StatelessWidget {
+  final heading;
+  final width;
+  final hintText;
+  final maxLine;
+
+  const TextForm({
+    Key? key,
+    @required this.heading,
+    @required this.width,
+    @required this.hintText,
+    this.maxLine,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Sans(heading, 16),
+        SizedBox(
+          height: 5,
+        ),
+        SizedBox(
+          width: width,
+          child: TextFormField(
+            // inputFormatters: [
+            //   LengthLimitingTextInputFormatter(10),
+            //   FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),
+            // ],
+            maxLines: maxLine == null ? null : maxLine,
+            decoration: InputDecoration(
+              focusedErrorBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.black,
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.red,
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.red,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(15)),
+              ),
+              hintText: hintText,
+              hintStyle: GoogleFonts.poppins(fontSize: 14),
+            ),
+            // validator: (text) {
+            //   if (RegExp("\\bamir\\b", caseSensitive: false)
+            //       .hasMatch(text.toString())) {
+            //     return "Match found";
+            //   }
+            // },
+            // autovalidateMode: AutovalidateMode.onUserInteraction,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class AnimatedCardWeb extends StatefulWidget {
+  final imagePath;
+  final text;
+  final fit;
+  final reverse;
+  const AnimatedCardWeb({
+    super.key,
+    @required this.imagePath,
+    @required this.text,
+    this.fit,
+    this.reverse,
+  });
+
+  @override
+  State<AnimatedCardWeb> createState() => _AnimatedCardWebState();
+}
+
+class _AnimatedCardWebState extends State<AnimatedCardWeb>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller = AnimationController(
+    vsync: this,
+    duration: Duration(seconds: 4),
+  )..repeat(reverse: true);
+
+  late Animation<Offset> _animation = Tween(
+    begin: widget.reverse == true ? Offset(0, 0.08) : Offset.zero,
+    end: widget.reverse == true ? Offset.zero : Offset(0, 0.08),
+  ).animate(_controller);
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SlideTransition(
+      position: _animation,
+      child: Card(
+        elevation: 30,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+          side: BorderSide(
+            color: Colors.red,
+          ),
+        ),
+        shadowColor: Colors.red,
+        child: Padding(
+          padding: EdgeInsets.all(15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.asset(
+                widget.imagePath,
+                height: 200,
+                width: 200,
+                fit: widget.fit == null ? null : widget.fit,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              SansBold(widget.text, 15),
+            ],
+          ),
+        ),
       ),
     );
   }

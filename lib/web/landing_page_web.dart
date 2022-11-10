@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'package:portofolio/components.dart';
 
@@ -14,6 +13,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
   @override
   Widget build(BuildContext context) {
     var heightDevice = MediaQuery.of(context).size.height;
+    var widthDevice = MediaQuery.of(context).size.width;
     return Scaffold(
       drawer: Drawer(),
       backgroundColor: Colors.white,
@@ -130,10 +130,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset(
-                  "assets/web.jpg",
-                  height: heightDevice / 1.7,
-                ),
+                Image.asset("assets/web.jpg", height: widthDevice / 1.9),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -244,79 +241,19 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Card(
-                      elevation: 30,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      shadowColor: Colors.red,
-                      child: Padding(
-                        padding: EdgeInsets.all(15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset(
-                              "assets/webL.png",
-                              height: 200,
-                              width: 200,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            SansBold("Web development", 15),
-                          ],
-                        ),
-                      ),
+                    AnimatedCardWeb(
+                      imagePath: "assets/webL.png",
+                      text: "Web development",
                     ),
-                    Card(
-                      elevation: 30,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      shadowColor: Colors.red,
-                      child: Padding(
-                        padding: EdgeInsets.all(15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset(
-                              "assets/app.png",
-                              height: 200,
-                              width: 200,
-                              fit: BoxFit.contain,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            SansBold("App development", 15),
-                          ],
-                        ),
-                      ),
+                    AnimatedCardWeb(
+                      imagePath: "assets/app.png",
+                      text: "App development",
+                      fit: BoxFit.contain,
+                      reverse: true,
                     ),
-                    Card(
-                      elevation: 30,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      shadowColor: Colors.red,
-                      child: Padding(
-                        padding: EdgeInsets.all(15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset(
-                              "assets/firebase.png",
-                              height: 200,
-                              width: 200,
-                              fit: BoxFit.contain,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            SansBold("Back-end development", 15),
-                          ],
-                        ),
-                      ),
+                    AnimatedCardWeb(
+                      imagePath: "assets/firebase.png",
+                      text: "Back-end development",
                     ),
                   ],
                 ),
@@ -336,46 +273,63 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                   children: [
                     Column(
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Sans("Fist name", 16),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            SizedBox(
-                              width: 350,
-                              child: TextFormField(
-                                decoration: InputDecoration(
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Colors.red,
-                                    ),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10)),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Colors.red,
-                                      width: 2,
-                                    ),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(15)),
-                                  ),
-                                  hintText: "Please enter your first name",
-                                  hintStyle: GoogleFonts.poppins(fontSize: 14),
-                                ),
-                              ),
-                            ),
-                          ],
+                        TextForm(
+                          width: 350,
+                          heading: "First name",
+                          hintText: "Please type your first name",
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        TextForm(
+                          width: 350,
+                          heading: "Email",
+                          hintText: "Please type your email",
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        TextForm(
+                          width: 350,
+                          heading: "Last name",
+                          hintText: "Please type your last name",
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        TextForm(
+                          width: 350,
+                          heading: "Phone number",
+                          hintText: "Please type your phone number",
                         ),
                       ],
                     ),
                   ],
                 ),
+                TextForm(
+                  heading: "Message",
+                  width: widthDevice / 1.5,
+                  hintText: "Please type your message",
+                  maxLine: 10,
+                ),
+                MaterialButton(
+                  onPressed: () {},
+                  elevation: 20.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  height: 60.0,
+                  minWidth: 200.0,
+                  color: Colors.red,
+                  child: SansBold("Submit", 20.0),
+                ),
               ],
             ),
-          )
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
         ],
       ),
     );
