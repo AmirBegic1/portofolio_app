@@ -10,6 +10,42 @@ class TabsWeb extends StatefulWidget {
   State<TabsWeb> createState() => _TabsWebState();
 }
 
+class TabsMobile extends StatefulWidget {
+  final text;
+  final route;
+  TabsMobile({
+    Key? key,
+    @required this.text,
+    @required this.route,
+  }) : super(key: key);
+
+  @override
+  State<TabsMobile> createState() => _TabsMobileState();
+}
+
+class _TabsMobileState extends State<TabsMobile> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+      onPressed: () {},
+      elevation: 20.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5.0),
+      ),
+      height: 50.0,
+      minWidth: 200.0,
+      color: Colors.black,
+      child: Text(
+        widget.text,
+        style: GoogleFonts.openSans(
+          fontSize: 20.0,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+}
+
 class _TabsWebState extends State<TabsWeb> {
   bool isSelected = false;
 
