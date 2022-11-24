@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:portofolio/components.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -11,10 +12,29 @@ class LandingPageMobile extends StatefulWidget {
 }
 
 class _LandingPageMobileState extends State<LandingPageMobile> {
+  crveniContainer(String text) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.red,
+          style: BorderStyle.solid,
+          width: 2.0,
+        ),
+        borderRadius: BorderRadius.circular(5.0),
+      ),
+      padding: EdgeInsets.all(7.0),
+      child: Text(
+        text,
+        style: GoogleFonts.openSans(fontSize: 15.0),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var widhtDevice = MediaQuery.of(context).size.width;
     return Scaffold(
+      extendBodyBehindAppBar: true,
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -87,7 +107,7 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
         children: [
           //intro First section
           Padding(
-            padding: const EdgeInsets.only(left: 20.0),
+            padding: EdgeInsets.only(left: 20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -118,8 +138,8 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
                       child: SansBold("Hello I'm", 15.0),
                     ),
                     SansBold("Amir Begić", 40.0),
-                    Sans("Software engineer", 30.0),
-                    Sans("- Flutter developer - ", 23.0),
+                    Sans("Software engineer", 27.0),
+                    Sans("- Flutter developer - ", 22.0),
                   ],
                 ),
                 SizedBox(height: 15.0),
@@ -149,6 +169,111 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
                 ),
               ],
             ),
+          ),
+          SizedBox(
+            height: 70.0,
+          ),
+          //drugi dio stranice about me
+          Padding(
+            padding: EdgeInsets.only(left: 8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SansBold("About me", 35.0),
+                SizedBox(height: 30.0),
+                Sans(
+                    "Hello! I'm Begić Amir and I am Software engineer building mobile apps with Flutter",
+                    15.0),
+                Sans(
+                    "I am a young ambitious person witch fell in love with building mobile apps for Andorid and iOS using Flutter ;)",
+                    15.0),
+                // Sans("mobile apps for Andorid and iOS using Flutter ;)", 15.0),
+                SizedBox(height: 30.0),
+                Wrap(
+                  spacing: 7.0,
+                  runSpacing: 7.0,
+                  children: [
+                    crveniContainer("Flutter"),
+                    crveniContainer("Firebase"),
+                    crveniContainer("REST Api"),
+                    crveniContainer("Andorid"),
+                    crveniContainer("iOS"),
+                  ],
+                )
+              ],
+            ),
+          ),
+          SizedBox(height: 60.0),
+          //treci dio sta ja radim?
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SansBold("What I do?", 35.0),
+              AnimatedCardWeb(
+                imagePath: "assets/webL.png",
+                text: "Web development",
+                witdh: 300.0,
+              ),
+              SizedBox(height: 35.0),
+              AnimatedCardWeb(
+                imagePath: "assets/app.png",
+                text: "App development",
+                fit: BoxFit.contain,
+                reverse: true,
+                witdh: 300.0,
+              ),
+              SizedBox(height: 35.0),
+              AnimatedCardWeb(
+                imagePath: "assets/firebase.png",
+                text: "Back-end development",
+                witdh: 300.0,
+              ),
+              SizedBox(height: 60.0),
+              //contat dio stranice 4 dio
+              Wrap(
+                runSpacing: 20.0,
+                spacing: 20.0,
+                alignment: WrapAlignment.center,
+                children: [
+                  SansBold("Contact me", 35.0),
+                  TextForm(
+                      text: "First Name",
+                      containerWidth: widhtDevice / 1.4,
+                      hintText: "Please type first name"),
+                  TextForm(
+                      text: "Last Name",
+                      containerWidth: widhtDevice / 1.4,
+                      hintText: "Please type last name"),
+                  TextForm(
+                      text: "Email",
+                      containerWidth: widhtDevice / 1.4,
+                      hintText: "Please type email address"),
+                  TextForm(
+                      text: "Phone number",
+                      containerWidth: widhtDevice / 1.4,
+                      hintText: "Please type your phone number"),
+                  TextForm(
+                    text: "Message",
+                    containerWidth: widhtDevice / 1.4,
+                    hintText: "Message:",
+                    maxLine: 10,
+                  ),
+                  MaterialButton(
+                    onPressed: () {},
+                    elevation: 20.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    height: 60.0,
+                    minWidth: widhtDevice / 2.2,
+                    color: Colors.red,
+                    child: SansBold("Submit", 20.0),
+                  ),
+                ],
+              ),
+              SizedBox(height: 20.0),
+            ],
           ),
         ],
       ),

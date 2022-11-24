@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:portofolio/mobile/landing_page_mobile.dart';
 import 'package:portofolio/web/landing_page_web.dart';

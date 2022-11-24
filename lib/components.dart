@@ -119,6 +119,7 @@ class Sans extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: TextAlign.center,
       style: GoogleFonts.openSans(
         fontSize: size,
       ),
@@ -127,15 +128,15 @@ class Sans extends StatelessWidget {
 }
 
 class TextForm extends StatelessWidget {
-  final heading;
-  final width;
+  final text;
+  final containerWidth;
   final hintText;
   final maxLine;
 
   const TextForm({
     Key? key,
-    @required this.heading,
-    @required this.width,
+    @required this.text,
+    @required this.containerWidth,
     @required this.hintText,
     this.maxLine,
   }) : super(key: key);
@@ -145,12 +146,12 @@ class TextForm extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Sans(heading, 16),
+        Sans(text, 16.0),
         SizedBox(
           height: 5,
         ),
         SizedBox(
-          width: width,
+          width: containerWidth,
           child: TextFormField(
             // inputFormatters: [
             //   LengthLimitingTextInputFormatter(10),
@@ -199,13 +200,16 @@ class AnimatedCardWeb extends StatefulWidget {
   final text;
   final fit;
   final reverse;
-  const AnimatedCardWeb({
-    super.key,
-    @required this.imagePath,
-    @required this.text,
-    this.fit,
-    this.reverse,
-  });
+  final height;
+  final witdh;
+  const AnimatedCardWeb(
+      {super.key,
+      @required this.imagePath,
+      @required this.text,
+      this.fit,
+      this.reverse,
+      this.height,
+      this.witdh});
 
   @override
   State<AnimatedCardWeb> createState() => _AnimatedCardWebState();
@@ -249,14 +253,16 @@ class _AnimatedCardWebState extends State<AnimatedCardWeb>
             children: [
               Image.asset(
                 widget.imagePath,
-                height: 200,
-                width: 200,
+                height: widget.height == null
+                    ? 200.0
+                    : widget.height, //null handling
+                width: widget.witdh == null ? 200.0 : widget.witdh,
                 fit: widget.fit == null ? null : widget.fit,
               ),
               SizedBox(
                 height: 10,
               ),
-              SansBold(widget.text, 15),
+              SansBold(widget.text, 15.0),
             ],
           ),
         ),

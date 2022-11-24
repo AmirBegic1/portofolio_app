@@ -326,16 +326,16 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                     Column(
                       children: [
                         TextForm(
-                          width: 350,
-                          heading: "First name",
+                          containerWidth: 350,
+                          text: "First name",
                           hintText: "Please type your first name",
                         ),
                         SizedBox(
                           height: 15,
                         ),
                         TextForm(
-                          width: 350,
-                          heading: "Email",
+                          containerWidth: 350,
+                          text: "Email",
                           hintText: "Please type your email",
                         ),
                       ],
@@ -343,16 +343,16 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                     Column(
                       children: [
                         TextForm(
-                          width: 350,
-                          heading: "Last name",
+                          containerWidth: 350,
+                          text: "Last name",
                           hintText: "Please type your last name",
                         ),
                         SizedBox(
                           height: 15,
                         ),
                         TextForm(
-                          width: 350,
-                          heading: "Phone number",
+                          containerWidth: 350,
+                          text: "Phone number",
                           hintText: "Please type your phone number",
                         ),
                       ],
@@ -360,8 +360,8 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                   ],
                 ),
                 TextForm(
-                  heading: "Message",
-                  width: widthDevice / 1.5,
+                  text: "Message",
+                  containerWidth: widthDevice / 1.5,
                   hintText: "Please type your message",
                   maxLine: 10,
                 ),
